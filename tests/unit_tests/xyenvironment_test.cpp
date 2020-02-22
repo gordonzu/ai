@@ -12,10 +12,12 @@ class TestXYEnvironment: public Test {
 public:
     TestXYEnvironment() {
         agent = std::make_unique<MockAgent>();
+        wall = std::make_unique<Wall>();
         env.add(agent, loc);        
     }
 
     EnvPtr agent;
+    EnvPtr wall;
     XYLocation loc{3,4};
     XYEnvironment env{10,12};
 };
