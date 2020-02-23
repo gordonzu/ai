@@ -14,11 +14,9 @@ public:
         key3{"key3"}, val3{true} {}
 
 	Attribute key1, val1, key2, val2, key3, val3;
-
 };
 
-TEST_F(TestPercept, testString)
-{/*
+TEST_F(TestPercept, testString) {
     auto str = "Percept[key1=value1]";
     Percept percept1{key1, val1};
     ASSERT_STREQ(print_string(percept1).c_str(), str);
@@ -29,7 +27,7 @@ TEST_F(TestPercept, testString)
 
     auto str3 = "Percept[key3=true]";
     Percept percept3{key3, val3};
-    ASSERT_STREQ(print_string(percept3).c_str(), str3);*/
+    ASSERT_STREQ(print_string(percept3).c_str(), str3);
 }
 
 
