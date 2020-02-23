@@ -10,7 +10,9 @@
 class EnvironmentObj {
 public:
     virtual ~EnvironmentObj() {} 
+    
     virtual bool is_wall() const = 0;    
+
     virtual bool operator==(const EnvironmentObj& other) const {
         if (typeid(*this) != typeid(other))
             return false;

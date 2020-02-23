@@ -14,7 +14,7 @@ public:
     virtual ~Wall() {}
 
     virtual bool is_wall() const {
-        return iswall;
+        return isWall;
     }
 
     bool operator==(const EnvironmentObj& other) const {
@@ -33,7 +33,7 @@ public:
     }
 
 private:
-    bool iswall{true};
+    bool isWall{true};
     size_t hashval{0};
 };
 #endif 

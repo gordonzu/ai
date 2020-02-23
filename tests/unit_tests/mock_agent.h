@@ -16,7 +16,7 @@ public:
     virtual ~MockAgent() {}
 
     virtual bool is_wall() const {
-        return iswall;
+        return isWall;
     }
 
     bool operator==(const EnvironmentObj& other) const {
@@ -44,7 +44,7 @@ public:
 
 protected:
     bool alive;
-    bool iswall{false};
+    bool isWall{false};
     size_t hashval{0};
 
 };

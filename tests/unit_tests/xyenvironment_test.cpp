@@ -11,8 +11,9 @@ using namespace::testing;
 class TestXYEnvironment: public Test {
 public:
     TestXYEnvironment() {
-        agent = std::make_unique<MockAgent>();
-        wall = std::make_unique<Wall>();
+        //agent = std::make_unique<MockAgent>();
+        agent = std::make_shared<MockAgent>();
+        wall = std::make_shared<Wall>();
         env.add(agent, loc);        
     }
 
