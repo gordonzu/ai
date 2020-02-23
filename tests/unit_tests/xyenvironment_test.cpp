@@ -22,12 +22,12 @@ public:
     XYEnvironment env{10,12};
 };
 
-TEST_F(TestXYEnvironment, testAddAgent) {
+TEST_F(TestXYEnvironment, test_add_agent) {
     EXPECT_EQ(env.get_location(agent), loc);
     EXPECT_EQ(env.objects_at_location(loc), size_t(1));
 }
 
-TEST_F(TestXYEnvironment, testAddObject2) {
+TEST_F(TestXYEnvironment, test_add_object2) {
     XYLocation yy{9,9};
     env.add(wall, yy);
     EXPECT_EQ(env.objects_at_location(yy), size_t(1));
@@ -97,6 +97,10 @@ TEST_F(TestXYEnvironment, test_move_object) {
     EXPECT_EQ(env.get_location(agent), xy);
 }
 
+TEST_F(TestXYEnvironment, test_persistence_of_move) {
+    EXPECT_EQ(env.get_location(agent), loc);
+}
+ 
 TEST_F(TestXYEnvironment, test_is_blocked) {
     XYLocation xy{5,5};
     env.add(agent, xy);
