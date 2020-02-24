@@ -16,7 +16,7 @@ public:
 	Attribute key1, val1, key2, val2, key3, val3;
 };
 
-TEST_F(TestPercept, testString) {
+TEST_F(TestPercept, test_string) {
     auto str = "Percept[key1=value1]";
     Percept percept1{key1, val1};
     EXPECT_STREQ(print_string(percept1).c_str(), str);
@@ -30,7 +30,7 @@ TEST_F(TestPercept, testString) {
     EXPECT_STREQ(print_string(percept3).c_str(), str3);
 }
 
-TEST_F(TestPercept, testEquals) {
+TEST_F(TestPercept, test_equals) {
     Percept p3;
     Percept p4;
     EXPECT_TRUE(p3 == p4);
@@ -40,7 +40,18 @@ TEST_F(TestPercept, testEquals) {
     EXPECT_TRUE(p6 == p5);
 }
 
+TEST_F(TestPercept, test_copy_and_assignment) {
+    Percept p1{key2, val1};
+    Percept p2{p1};
+    EXPECT_TRUE(p1 == p2);    
 
+    Percept p3{key2, val2};
+    Percept p4{key3, val3};
+    EXPECT_FALSE(p3 == p4);
+
+    p4 = p3;
+    EXPECT_TRUE(p3 == p4);
+}
 
 
 
