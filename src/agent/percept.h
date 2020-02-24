@@ -9,6 +9,7 @@
 class Percept : public DynamicObject {
 public:
     Percept() {}
+    virtual ~Percept() override {}
 
     Percept(const Attribute& key, const Attribute& val) {
        set_attribute(key, val);
@@ -20,6 +21,20 @@ public:
        set_attribute(key2, val2);
     }
 
+    Percept(const Percept& x) : DynamicObject(x) {}
+
+    Percept& operator=(const Percept& x) noexcept {
+        if (this != &x) DynamicObject::operator=(x);
+        return *this;
+    }
+
+    bool operator==(const Percept& x) const {
+        return DynamicObject::operator==(x);
+    }
+
+    bool operator<(const Percept& x) const {
+        return get_map() < x.get_map();
+    }
     friend std::ostream& operator<<(std::ostream& out, const Percept& x) {
 		return out << (DynamicObject&)x;	
 	}		

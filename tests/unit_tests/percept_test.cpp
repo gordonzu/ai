@@ -19,15 +19,29 @@ public:
 TEST_F(TestPercept, testString) {
     auto str = "Percept[key1=value1]";
     Percept percept1{key1, val1};
-    ASSERT_STREQ(print_string(percept1).c_str(), str);
+    EXPECT_STREQ(print_string(percept1).c_str(), str);
 
     auto str2 = "Percept[key1=value1, key2=999999]";
     Percept percept2{key1, val1, key2, val2};
-    ASSERT_STREQ(print_string(percept2).c_str(), str2);
+    EXPECT_STREQ(print_string(percept2).c_str(), str2);
 
     auto str3 = "Percept[key3=true]";
     Percept percept3{key3, val3};
-    ASSERT_STREQ(print_string(percept3).c_str(), str3);
+    EXPECT_STREQ(print_string(percept3).c_str(), str3);
 }
+
+TEST_F(TestPercept, testEquals) {
+    Percept p3;
+    Percept p4;
+    EXPECT_TRUE(p3 == p4);
+    Percept p5{key1, val1};
+    EXPECT_FALSE(p3 == p5);
+    Percept p6{key1, val1};
+    EXPECT_TRUE(p6 == p5);
+}
+
+
+
+
 
 
