@@ -34,11 +34,11 @@ public:
     }
 
     bool set_attribute(const Attribute& key,  const Attribute& val) {
-        //std::cout << "Print key=" << key << " val=" << val << std::endl; 
+        std::cout << "Print key=" << key << " val=" << val << std::endl; 
         auto x = attributes_.emplace(key, val);
         if (x.second) return true;
         return false;
-        //std::cout << "attributes_ size: " << attributes_.size() << std::endl;
+        std::cout << "attributes_ size: " << attributes_.size() << std::endl;
     }
     
     const std::optional<Attribute> get_attribute(const Attribute& key) const {
