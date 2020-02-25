@@ -11,7 +11,7 @@ public:
         hashval = hash_it();
     }
 
-    virtual ~Wall() {}
+    virtual ~Wall() = default;
 
     virtual bool is_wall() const {
         return isWall;

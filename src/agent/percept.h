@@ -8,7 +8,7 @@
 
 class Percept : public DynamicObject {
 public:
-    Percept() {}
+    Percept() = default; 
     virtual ~Percept() override {}
 
     Percept(const Attribute& key, const Attribute& val) {

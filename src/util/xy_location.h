@@ -13,9 +13,9 @@ class XYLocation {
 public:
     enum class Direction: unsigned short{ NORTH, SOUTH, EAST, WEST };
 
-    XYLocation() {}
+    ~XYLocation() = default; 
+    XYLocation() = default;
     XYLocation(int x, int y): x_{x}, y_{y} {}
-    ~XYLocation() {}
 
     XYLocation(const XYLocation& other) {
         x_ = other.x_;

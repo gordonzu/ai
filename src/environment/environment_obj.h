@@ -9,7 +9,7 @@
 
 class EnvironmentObj {
 public:
-    virtual ~EnvironmentObj() {} 
+    virtual ~EnvironmentObj() = default; 
     
     virtual bool is_wall() const = 0;    
 

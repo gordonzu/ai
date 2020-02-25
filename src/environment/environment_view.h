@@ -5,6 +5,6 @@
 
 class EnvironmentView {
 public:
-    virtual ~EnvironmentView() {}        
+    virtual ~EnvironmentView() = default;        
 };
 #endif

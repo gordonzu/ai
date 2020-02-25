@@ -13,10 +13,9 @@
 class DynamicObject {
 protected:
     DynamicObject() = default;
-
-public:
     virtual ~DynamicObject() = default;
 
+public:
     DynamicObject(const DynamicObject& x) {
 	    attributes_.insert(x.attributes_.begin(), x.attributes_.end()); 
     }
@@ -34,19 +33,12 @@ public:
     }
 
     bool set_attribute(const Attribute& key,  const Attribute& val) {
-        std::cout << "Print key=" << key << " val=" << val << std::endl; 
         auto x = attributes_.emplace(key, val);
         if (x.second) return true;
         return false;
-        std::cout << "attributes_ size: " << attributes_.size() << std::endl;
     }
     
     const std::optional<Attribute> get_attribute(const Attribute& key) const {
-            //std::cout << "--------------------------------------" << std::endl;  
-            //std::cout << "Calling DynamicObject::get_attribute()" << std::endl;  
-            //std::cout << "attributes_ size: " << attributes_.size() << std::endl;  
-            //std::cout << "Passed in key: " << print_string(key) << std::endl;  
-
         try {
             auto it = attributes_.find(key);
             if (it != attributes_.end()) {
@@ -56,17 +48,17 @@ public:
                throw lookup_exception();
             }
         }
-        catch(lookup_exception& e) {/*
+        catch(lookup_exception& e) {
             std::cerr << "  In get_attribute key: " 
                       << key 
                       << " returns no value in attributes map." 
                       << std::endl;
-            std::cerr << e.what() << std::endl; */
+            std::cerr << e.what() << std::endl; 
         } 
-        catch(std::exception& e) {/*
+        catch(std::exception& e) {
             std::cerr << "DynamicObject::get_attribute throws..." << std::endl;
             std::cerr << "DynamicObject::get_attribute throws..." << std::endl;
-            std::cerr << e.what() << std::endl;*/
+            std::cerr << e.what() << std::endl;
         }
         return std::nullopt;
     }
@@ -118,5 +110,16 @@ private:
     std::string type_;
 };
 #endif //AICPP_DYNAMIC_OBJECT_H
+
+
+
+
+
+
+        //std::cout << "attributes_ size: " << attributes_.size() << std::endl;
+        //std::cout << "Print key=" << key << " val=" << val << std::endl; 
+
+            //std::cout << "attributes_ size: " << attributes_.size() << std::endl;  
+            //std::cout << "Passed in key: " << print_string(key) << std::endl;  
 
 

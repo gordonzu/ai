@@ -17,7 +17,7 @@ using EnvPtr = std::shared_ptr<EnvironmentObj>;
 using EnvVec = std::vector<EnvPtr>;
 using Map = std::vector<std::pair<XYLocation, EnvVec>>;
 
-class XYEnvironment : public Environment {
+class XYEnvironment : public env::Environment {
 public:
     XYEnvironment(int w, int h) {
         if (w < 1 || h < 1)

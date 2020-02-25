@@ -15,42 +15,48 @@ using ViewPtr= std::shared_ptr<EnvironmentView>;
 using EnvVec = std::vector<EnvPtr>;
 using ViewVec = std::vector<ViewPtr>;
 
-// change add functions into a function template? Or keep seperate functions and 
-// move the algorithm into a function object passed to each add 
+// move add functions into a function template? Or keep seperate functions and 
+// move the algorithm into a function object passed to each add?
+// protect all bass class functions, write XYEnvironment wrappers 
 
-class Environment { 
-public:
-    void add_environment_object(EnvPtr eo) {
-        if (std::find(objects.begin(), objects.end(), eo) == objects.end()) 
-            objects.emplace_back(eo);
-    }
-    
-    void add_agent(EnvPtr agent) {
-        if (std::find(agents.begin(), agents.end(), agent) == agents.end()) 
-            agents.emplace_back(agent);
-    }
+namespace env {
+    class Environment { 
+    public:
+        size_t get_num_views() {
+            return views.size();
+        }
 
-    void add_view(ViewPtr view) {
-        if (std::find(views.begin(), views.end(), view) == views.end()) 
-            views.emplace_back(view);  
-    }
+        size_t get_num_objects() {
+            return objects.size();
+        }
 
-    size_t get_num_views() {
-        return views.size();
-    }
+        size_t get_num_agents() {
+            return agents.size();
+        }
 
-    size_t get_num_objects() {
-        return objects.size();
-    }
+    protected:
+        Environment() = default;
+        ~Environment() = default;
 
-    size_t get_num_agents() {
-        return agents.size();
-    }
+        void add_environment_object(EnvPtr eo) {
+            if (std::find(objects.begin(), objects.end(), eo) == objects.end()) 
+                objects.emplace_back(eo);
+        }
+        
+        void add_agent(EnvPtr agent) {
+            if (std::find(agents.begin(), agents.end(), agent) == agents.end()) 
+                agents.emplace_back(agent);
+        }
 
-protected:
-    ViewVec views;
-    EnvVec objects;
-    EnvVec agents;
-};
-#endif
+        void add_view(ViewPtr view) {
+            if (std::find(views.begin(), views.end(), view) == views.end()) 
+                views.emplace_back(view);  
+        }
+
+        ViewVec views;
+        EnvVec objects;
+        EnvVec agents;
+    };
+    #endif
+}
 

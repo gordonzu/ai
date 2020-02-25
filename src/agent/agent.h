@@ -7,7 +7,7 @@
 
 class Agent : public EnvironmentObj { 
 public:
-    virtual ~Agent() {}
+    virtual ~Agent() = default;
     virtual bool is_alive() = 0;
     virtual void set_alive(bool a) = 0;
 };
