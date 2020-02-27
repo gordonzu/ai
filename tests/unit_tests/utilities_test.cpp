@@ -27,8 +27,6 @@ public:
     attribute_map attribMap;
     attribute_map::iterator it;   
     std::stringstream str_out;
-
-        
 };
 
 TEST_F(TestUtilities, test_size) {
