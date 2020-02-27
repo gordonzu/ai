@@ -22,6 +22,7 @@ public:
         attribMap.emplace(key3, val3);
         attribMap.emplace(key4, val4);
     }
+
  
     Attribute key1, val1, key2, val2, key3, val3, key4, val4;
     attribute_map attribMap;
@@ -73,8 +74,33 @@ TEST_F(TestUtilities, test_map_string_representation) {
     EXPECT_STREQ(strMap.c_str(), str.c_str());
 }
 
+Attribute key{"key365"};
 
+auto return_key1(bool b) {
+    return b ? std::optional<Attribute>(key) : std::nullopt;
+}
 
+auto return_key2(bool b) {
+    return b ? std::optional<Attribute>("key") : std::nullopt;
+}
+ 
+auto return_key3(bool b) {
+    return b ? std::optional<Attribute>(true) : std::nullopt;
+}
+
+TEST_F(TestUtilities, test_bool_attributes) {
+    std::optional<Attribute> retval = key;
+    EXPECT_TRUE(retval);
+
+    EXPECT_TRUE(return_key1(true)); 
+    EXPECT_FALSE(return_key1(false)); 
+
+    EXPECT_TRUE(return_key2(true));
+    EXPECT_FALSE(return_key2(false));
+
+    EXPECT_TRUE(return_key3(true));
+    EXPECT_FALSE(return_key3(false));
+}
 
 
 
