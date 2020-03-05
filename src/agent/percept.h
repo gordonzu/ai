@@ -12,7 +12,7 @@ public:
     virtual ~Percept() override {}
 
     Percept(const Attribute& key, const Attribute& val) {
-       set_attribute(key, val);
+        set_attribute(key, val);
     }
 
     Percept(const Attribute& key1, const Attribute& val1,
