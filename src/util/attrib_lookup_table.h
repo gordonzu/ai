@@ -19,8 +19,41 @@ public:
         return attr_table.size();
     }
 
+    bool set_value(const Attribute& row, 
+                   const Attribute& col, 
+                   const Attribute& val) {
+        x = attr_table.size();
+        if ((outer = attr_table.find(row)) != attr_table.end()) {
+            return update_row(row, col, val);
+        }
+        return insert_row(row, col, val);
+    }
+
 private:
+
+    bool update_row(const Attribute& row, 
+                    const Attribute& col, 
+                    const Attribute& val) {
+        inner = outer->second.find(col);
+        if (inner != outer->second.end()) {
+            inner->second = val;
+            return outer->second.at(col) == val;
+        }
+        outer->second.emplace(col, val);
+        return outer->second.at(col) == val;
+    }
+
+    bool insert_row(const Attribute& row, 
+                    const Attribute& col, 
+                    const Attribute& val) {
+        attr_table[row][col] = val;
+        return attr_table.size() == ++x;   
+    }
+ 
     AttribTable attr_table;
+    AttribMap::iterator inner;
+    AttribTable::iterator outer;
+    size_t x;
 };
 #endif // AICPP_TABLE_H
 

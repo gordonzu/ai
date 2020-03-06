@@ -34,13 +34,15 @@ public:
 	AttribLookupTable t;
 };
 
-TEST_F(TestTable, test_size) {
+TEST_F(TestTable, test_size_is_zero) {
     EXPECT_TRUE(t.get_size() == 0);
-    //t.set_value(rowh1, col3, cstr1);
-    //EXPECT_TRUE(t.get_size() == 1);
-
 }
 
+TEST_F(TestTable, test_add_data) {
+    EXPECT_TRUE(t.get_size() == 0);
+    t.set_value(rowh1, col3, cstr1);
+    EXPECT_TRUE(t.get_size() == 1);
+}
 
 
 
