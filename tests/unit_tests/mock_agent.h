@@ -16,6 +16,11 @@ public:
     virtual ~MockAgent() {}
 
     ActionPtr execute(Percept& percept) override {
+        if (percept.has_value()) {
+            ActionPtr a = std::make_shared<Action>("value");
+            return a;
+        }
+            
         ActionPtr a = std::make_shared<Action>();
         return a;
     }

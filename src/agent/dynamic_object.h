@@ -98,6 +98,10 @@ public:
         return describe_attributes(type_);
     }
 
+    bool has_value() {
+        return attributes_.size() > 0;
+    }
+
     friend std::ostream& operator<<(std::ostream& out, DynamicObject& x) {
         x.type_.clear();
         x.type_ = x.get_type();

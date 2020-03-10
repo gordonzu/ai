@@ -27,4 +27,10 @@ TEST_F(TestTableDrivenAgentProgram, test_noop_action) {
     EXPECT_TRUE(action->is_no_op());
 }
 
+TEST_F(TestTableDrivenAgentProgram, test_live_program) {
+    Percept p{"key1", "value1"};
+    auto action = agent.execute(p);
+    EXPECT_FALSE(action->is_no_op());
+}
+
 
