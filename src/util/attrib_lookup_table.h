@@ -40,6 +40,11 @@ public:
 		return std::nullopt;		
     }
 
+    bool table_clear() {
+        attr_table.clear();
+        return attr_table.size() == 0;
+    }
+
 private:
     AttribTable attr_table;
     AttribMap::iterator inner;

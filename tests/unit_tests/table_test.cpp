@@ -53,9 +53,17 @@ TEST_F(TestTable, test_get_data) {
 	EXPECT_TRUE(t.get_value(rowh1, col3) == cstr1);
 }
 
+TEST_F(TestTable, test_table_clear) {
+    EXPECT_TRUE(t.get_size() == 0);
+    EXPECT_TRUE(t.set_value(rowh1, col3, cstr1));
+    EXPECT_TRUE(t.set_value(rowh2, col3, cstr2));
+    EXPECT_TRUE(t.set_value(rowh3, col3, cstr3));
+    EXPECT_TRUE(t.set_value(rowh4, col3, cstr4));
 
-
-
+    EXPECT_TRUE(t.get_size() == 4);
+    EXPECT_TRUE(t.table_clear());
+    EXPECT_TRUE(t.get_size() == 0);
+}
 
 
 
