@@ -44,6 +44,38 @@ TEST_F(TestTable, test_add_data) {
     EXPECT_TRUE(t.get_size() == 1);
 }
 
+TEST_F(TestTable, test_get_data) {
+    EXPECT_FALSE(t.get_value(rowh1, col2) == j);
+	EXPECT_FALSE(t.get_value(rowh1, col2));
+
+    EXPECT_TRUE(t.set_value(rowh1, col3, cstr1));
+    EXPECT_FALSE(t.get_value(rowh1, col2) == cstr1);
+	EXPECT_TRUE(t.get_value(rowh1, col3) == cstr1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

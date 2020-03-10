@@ -29,7 +29,22 @@ public:
         return insert_row(row, col, val);
     }
 
+    std::optional<Attribute> get_value(const Attribute& row, 
+                                       const Attribute& col) {
+        if ((outer = attr_table.find(row)) != attr_table.end()) {
+			if ((inner = outer->second.find(col)) != outer->second.end())
+			{
+				return inner->second;
+			}	
+		}
+		return std::nullopt;		
+    }
+
 private:
+    AttribTable attr_table;
+    AttribMap::iterator inner;
+    AttribTable::iterator outer;
+    size_t x;
 
     bool update_row(const Attribute& row, 
                     const Attribute& col, 
@@ -49,11 +64,6 @@ private:
         attr_table[row][col] = val;
         return attr_table.size() == ++x;   
     }
- 
-    AttribTable attr_table;
-    AttribMap::iterator inner;
-    AttribTable::iterator outer;
-    size_t x;
 };
 #endif // AICPP_TABLE_H
 
