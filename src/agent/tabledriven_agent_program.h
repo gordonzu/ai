@@ -7,7 +7,7 @@
 
 class TableDrivenAgentProgram: public AgentProgram {
 public:    
-    virtual ActionPtr execute(const Percept& p) {
+    ActionPtr execute(const Percept& p) override {
         ActionPtr aPtr = std::make_shared<Action>();
         return aPtr;
     }

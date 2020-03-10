@@ -10,6 +10,10 @@ namespace ag {
     public:
         Action() : no_op{true} { }
 
+        bool is_no_op() {
+            return no_op;
+        }
+
     private:
         bool no_op;
     };

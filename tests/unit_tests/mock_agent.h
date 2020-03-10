@@ -15,7 +15,18 @@ public:
 
     virtual ~MockAgent() {}
 
-    virtual bool is_wall() const {
+    ActionPtr execute(Percept& percept) override {
+        ActionPtr a = std::make_shared<Action>();
+        return a;
+    }
+
+    bool set_program(ProgramPtr p) override {
+        if (p == nullptr) 
+            return false;
+        return true;
+    }
+
+    bool is_wall() const override {
         return isWall;
     }
 
