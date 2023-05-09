@@ -5,6 +5,8 @@
 
 #include <vector>
 #include <map>
+#include <optional>
+
 #include "util/attribute.h"
 
 using AttribVector = std::vector<Attribute>;
@@ -51,9 +53,7 @@ private:
     AttribTable::iterator outer;
     size_t x;
 
-    bool update_row(const Attribute& row, 
-                    const Attribute& col, 
-                    const Attribute& val) {
+    bool update_row(const Attribute& row, const Attribute& col, const Attribute& val) {
         inner = outer->second.find(col);
         if (inner != outer->second.end()) {
             inner->second = val;
@@ -63,9 +63,7 @@ private:
         return outer->second.at(col) == val;
     }
 
-    bool insert_row(const Attribute& row, 
-                    const Attribute& col, 
-                    const Attribute& val) {
+    bool insert_row(const Attribute& row, const Attribute& col, const Attribute& val) {
         attr_table[row][col] = val;
         return attr_table.size() == ++x;   
     }
