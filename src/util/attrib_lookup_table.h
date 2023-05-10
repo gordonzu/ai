@@ -6,7 +6,6 @@
 #include <vector>
 #include <map>
 #include <optional>
-
 #include "util/attribute.h"
 
 using AttribVector = std::vector<Attribute>;

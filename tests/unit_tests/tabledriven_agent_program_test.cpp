@@ -16,7 +16,6 @@ public:
     Percept p;
 };
 
-
 TEST_F(TestTableDrivenAgentProgram, test_null_program) {
     EXPECT_FALSE(agent.set_program(nullptr));
 }
@@ -32,5 +31,35 @@ TEST_F(TestTableDrivenAgentProgram, test_live_program) {
     auto action = agent.execute(p);
     EXPECT_FALSE(action->is_no_op());
 }
+
+TEST_F(TestTableDrivenAgentProgram, test_existing_sequences) {
+
+
+
+
+
+    EXPECT_TRUE(true);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

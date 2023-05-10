@@ -3,6 +3,7 @@ build/
 
 # Google Tests
 tests/lib/
+.cache/
 
 # Jet Brains
 .idea/
