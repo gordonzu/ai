@@ -5,7 +5,7 @@
 #include "mock_agent.h"
 #include "agent/percept.h"
 #include "agent/action.h"
-#include "agent/tabledriven_agent_program.h"
+#include "agent/table_driven_agent_program.h"
 
 using namespace::testing;
 
@@ -14,6 +14,7 @@ public:
 
     MockAgent agent;
     Percept p;
+    std::shared_ptr<AgentProgram> ptrProg;
 };
 
 TEST_F(TestTableDrivenAgentProgram, test_null_program) {
@@ -33,13 +34,9 @@ TEST_F(TestTableDrivenAgentProgram, test_live_program) {
 }
 
 TEST_F(TestTableDrivenAgentProgram, test_existing_sequences) {
-
-
-
-
+    agent.set_program(ptrProg);
 
     EXPECT_TRUE(true);
-
 }
 
 

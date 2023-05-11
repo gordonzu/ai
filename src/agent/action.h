@@ -19,8 +19,8 @@ namespace ag {
         }
 
     private:
-        bool no_op;
         std::string attrib;
+        bool no_op;
         std::string col{"name"};
     };
 }
