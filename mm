@@ -1,6 +1,5 @@
 #!/bin/bash
 
-clear
 mkdir -p build  
 rm -rf build/src/ai_run &&
 rm -rf build/tests/unit_tests/unit_tests_run

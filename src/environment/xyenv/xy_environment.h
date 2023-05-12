@@ -7,7 +7,8 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <cmath>                        
+#include <cmath>                       
+#include "wall.h"
 #include "environment/environment.h"               
 #include "util/xy_location.h"
 
