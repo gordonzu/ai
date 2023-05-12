@@ -8,15 +8,10 @@
 namespace ag {
     class Action : public DynamicObject {
     public:
-        Action() : no_op{true} { }
+        Action(); 
         virtual ~Action() = default;
-
-        explicit Action(const std::string& str) : attrib{str}, no_op{false} {
-        }
-
-        bool is_no_op() {
-            return no_op;
-        }
+        explicit Action(const std::string& str);
+        bool is_no_op(); 
 
     private:
         std::string attrib;
