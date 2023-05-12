@@ -34,4 +34,48 @@ AgentProgram
                                                 -- Action* lookup_action();
                                                 -- TableDrivenAgentProgram(std::multimap<std::vector<Percept>, Action*>
                                                 -- void set_table(std::multimap<std::vector<Percept>, Action*>
-                                                -- Action* execute(const Percept& p)
+
+
+Before:
+
+class A {
+public:
+virtual ~A() = default;
+
+virtual void foo() = 0;
+
+};
+
+class B : public A {
+public:
+void foo() override {}
+};
+
+class C : public A {
+public:
+void foo() override {}
+};
+
+// takes concrete implementations of A (B or C in this case)
+void clientFunc(std::unique_ptr<A> a) {
+a->foo();
+...
+}
+After:
+
+class B {
+public:
+void foo() {}
+};
+
+class C {
+public:
+void foo() {}
+};
+
+// takes any type as long as it implements foo()
+template <typename T>
+void clientFunc(T a) {
+a.foo();
+...
+}                                               -- Action* execute(const Percept& p)

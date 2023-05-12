@@ -2,14 +2,14 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 set(BINARY unit_tests_run)
 
-set(
-    TEST_SOURCES 
-    main.cpp
-    mock_agent.h
-    xyenvironment_test.cpp
-)
+# set(
+#     TEST_SOURCES 
+#     main.cpp
+#     mock_agent.h
+#     xyenvironment_test.cpp
+# )
 
-#file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
+file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
 
 add_executable(${BINARY} ${TEST_SOURCES})
 

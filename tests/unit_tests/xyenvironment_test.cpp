@@ -50,10 +50,10 @@ TEST_F(TestXYEnvironment, test_objects_are_unique) {
 
 TEST_F(TestXYEnvironment, test_add_two_objects_one_location) {
     XYLocation xy{9,8};
-    env.move_to_absolute_location(agent,xy);
+    env.move_absolute(agent,xy);
     EXPECT_EQ(env.objects_at_location(xy), size_t(1));
     EnvPtr agent2 = std::make_shared<MockAgent>();
-    env.move_to_absolute_location(agent2,xy);
+    env.move_absolute(agent2,xy);
     EXPECT_EQ(env.objects_at_location(xy), size_t(2));
 }
 
@@ -73,7 +73,7 @@ TEST_F(TestXYEnvironment, test_get_current_location) {
 
 TEST_F(TestXYEnvironment, test_move_to_absolute_location) {
     XYLocation xy{5,3};
-    env.move_to_absolute_location(agent, xy);
+    env.move_absolute(agent, xy);
     EXPECT_EQ(env.get_location(agent), xy);
     EXPECT_NE(env.get_location(agent), loc); 
 }
@@ -104,9 +104,9 @@ TEST_F(TestXYEnvironment, test_persistence_of_move) {
 TEST_F(TestXYEnvironment, test_is_blocked) {
     XYLocation xy{5,5};
     env.add(agent, xy);
-    EXPECT_EQ(env.blocked(xy), false);
+    EXPECT_EQ(env.is_blocked(xy), false);
     env.add(wall, xy);
-    EXPECT_EQ(env.blocked(xy), true);
+    EXPECT_EQ(env.is_blocked(xy), true);
 }
 
 TEST_F(TestXYEnvironment, test_move_with_blocking_walls) {
@@ -122,7 +122,7 @@ TEST_F(TestXYEnvironment, test_move_with_blocking_walls) {
     EnvPtr southwall = std::make_shared<Wall>();
     EnvPtr westwall = std::make_shared<Wall>();
     env.add(northwall, xyNorth);
-    EXPECT_EQ(env.blocked(xyNorth), true);
+    EXPECT_EQ(env.is_blocked(xyNorth), true);
    
     env.add(southwall, xySouth);
     env.add(westwall, xyWest);
@@ -164,18 +164,18 @@ TEST_F(TestXYEnvironment, test_get_objects_near) {
 TEST_F(TestXYEnvironment, test_make_perimeter) {
     env.make_perimeter(5);
 
-    EXPECT_TRUE(env.blocked(XYLocation{1,1}));
-    EXPECT_TRUE(env.blocked(XYLocation{1,2}));
-    EXPECT_TRUE(env.blocked(XYLocation{1,5}));
-    EXPECT_TRUE(env.blocked(XYLocation{2,1}));
-    EXPECT_TRUE(env.blocked(XYLocation{5,2}));
-    EXPECT_TRUE(env.blocked(XYLocation{5,5}));
-    EXPECT_TRUE(env.blocked(XYLocation{4,1}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{1,1}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{1,2}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{1,5}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{2,1}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{5,2}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{5,5}));
+    EXPECT_TRUE(env.is_blocked(XYLocation{4,1}));
 
-    EXPECT_FALSE(env.blocked(XYLocation{7,5}));
-    EXPECT_FALSE(env.blocked(XYLocation{2,8}));
-    EXPECT_FALSE(env.blocked(XYLocation{4,4}));
-    EXPECT_FALSE(env.blocked(XYLocation{3,2}));
+    EXPECT_FALSE(env.is_blocked(XYLocation{7,5}));
+    EXPECT_FALSE(env.is_blocked(XYLocation{2,8}));
+    EXPECT_FALSE(env.is_blocked(XYLocation{4,4}));
+    EXPECT_FALSE(env.is_blocked(XYLocation{3,2}));
 }
 
 
