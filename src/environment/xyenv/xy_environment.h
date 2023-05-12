@@ -80,7 +80,7 @@ public:
         return is_blocked(xy);
     }
 
-    EnvVec& get_objects_near(const EnvPtr obj, unsigned rad) {
+    EnvVec& get_objects_near(const EnvPtr obj, int rad) {
         nearObjs.clear();
         auto xy = get_location(obj);
 
@@ -115,11 +115,15 @@ public:
             locations.emplace_back(XYLocation{x,i});
         }
 
-        int i = 0;
-        for (auto& w : walls) {
+        // int i = 0;
+        // for (auto& w : walls) {
+        //     add(walls[i], locations[i]);
+        //     ++i;
+        // }
+        
+        for (unsigned i = 0; i < walls.size(); ++i) {
             add(walls[i], locations[i]);
-            ++i;
-        } 
+        }
     }
 
 private:
@@ -139,7 +143,7 @@ private:
         return false;
     }
 
-    bool in_radius(unsigned rad, const XYLocation& a, const XYLocation& b) {
+    bool in_radius(int rad, const XYLocation& a, const XYLocation& b) {
         int xdiff = a.getx() - b.getx();
         int ydiff = a.gety() - b.gety();
         return std::sqrt((xdiff * xdiff) + (ydiff * ydiff)) <= rad;
@@ -197,8 +201,8 @@ private:
     }
 
     void grow_matrix(const XYLocation& xy) {
-        unsigned new_width = 0;
-        unsigned new_height = 0;
+        int new_width = 0;
+        int new_height = 0;
 
         if ((xy.getx() - itv->first.getx()) > 0)
             new_width = xy.getx();
@@ -213,7 +217,7 @@ private:
             add_columns(new_height);
     }
 
-    void add_rows(unsigned new_width) {
+    void add_rows(int new_width) {
         // add new rows within existing columns 
         for (int i = (width + 1); i <= new_width; ++i) {
             for (int ii = 1; ii <= height; ++ii) {
@@ -223,7 +227,7 @@ private:
         width = new_width;
     }
 
-    void add_columns(unsigned new_height) {
+    void add_columns(int new_height) {
         // extend new columns to all rows
         for (int i = 1; i <= width; ++i) {
             for (int ii = (height + 1); ii <= new_height; ++ii) {
@@ -233,16 +237,16 @@ private:
         height = new_height;
     }
 
-    void print_map_locations() {
+    void int_map_locations() {
         for (const std::pair<XYLocation, EnvVec>& p : agent_map)
             std::cout << "Location: " << p.first << std::endl; 
     }
 
-    unsigned get_width() {
+    int get_width() {
         return width;
     }
 
-    unsigned get_height() {
+    int get_height() {
         return height;
     }
 
@@ -250,8 +254,8 @@ private:
     Map::iterator itv;
     EnvVec::iterator its;
     EnvVec nearObjs;
-    unsigned width{0};
-    unsigned height{0}; 
+    int width{0};
+    int height{0}; 
     XYLocation xyNull{0,0};
     bool flag{true};
 };
