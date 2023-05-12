@@ -10,34 +10,15 @@ class Percept : public DynamicObject {
 public:
     Percept() = default; 
     virtual ~Percept() override {}
-
-    Percept(const Attribute& key, const Attribute& val) {
-        set_attribute(key, val);
-    }
-
+    Percept(const Percept& x); 
+    Percept(const Attribute& key, const Attribute& val);
     Percept(const Attribute& key1, const Attribute& val1,
-            const Attribute& key2, const Attribute& val2) {
-       set_attribute(key1, val1);
-       set_attribute(key2, val2);
-    }
+            const Attribute& key2, const Attribute& val2);
 
-    Percept(const Percept& x) : DynamicObject(x) {}
-
-    Percept& operator=(const Percept& x) noexcept {
-        if (this != &x) DynamicObject::operator=(x);
-        return *this;
-    }
-
-    bool operator==(const Percept& x) const {
-        return DynamicObject::operator==(x);
-    }
-
-    bool operator<(const Percept& x) const {
-        return get_map() < x.get_map();
-    }
-    friend std::ostream& operator<<(std::ostream& out, const Percept& x) {
-		return out << (DynamicObject&)x;	
-	}		
+    Percept& operator=(const Percept& x) noexcept;
+    bool operator==(const Percept& x) const;
+    bool operator<(const Percept& x) const;
+    friend std::ostream& operator<<(std::ostream& out, const Percept& x);
 };
 
 #endif //AICPP_PERCEPT_H
